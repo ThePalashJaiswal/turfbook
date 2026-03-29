@@ -1,3 +1,8 @@
+"receipt":  booking_ref[:40],
+"receipt":  booking_ref[:40],
+git add .
+git commit -m "fix razorpay receipt length"
+git push
 import streamlit as st
 import razorpay
 import hmac, hashlib, json
@@ -13,7 +18,7 @@ def create_order(amount_inr: int, booking_ref: str) -> dict:
     order = client.order.create({
         "amount":   amount_inr * 100,   # paise
         "currency": "INR",
-        "receipt":  booking_ref,
+        "receipt":  booking_ref[:40],
         "notes":    {"booking_ref": booking_ref},
     })
     return order
